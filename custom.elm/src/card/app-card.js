@@ -1,7 +1,19 @@
 class AppCard extends HTMLElement {
 
     static get observedAttributes() {
-        return ['my-attr'];
+        return ['my-attr', 'disabled'];
+    }
+
+    get disabled() {
+        return this.hasAttribute('disabled');
+    }
+
+    set disabled(val) {
+        if (val) {
+            this.setAttribute('disabled', val);
+        } else {
+            this.removeAttribute('disabled');
+        }
     }
 
     constructor() {
@@ -24,6 +36,9 @@ class AppCard extends HTMLElement {
 
     attributeChangedCallback(name, oldValue, newValue) {
         console.log(`Attribute ${name} has changed: ${oldValue} ->  ${newValue}. `);
+        if (name === 'my-attr' && oldValue !== newValue) {
+           this.disabled = newValue === 'blue';
+        }
         if (oldValue !== newValue) {
             this.render();
         }
@@ -31,14 +46,22 @@ class AppCard extends HTMLElement {
 
     render() {
         const myAtttrValue = this.getAttribute('my-attr') || 'red';
+        const disabled = this.getAttribute('disabled') ? 'disabled' : '';
+
         this.shadowRoot.innerHTML = `
           <style>
             .bg-color {
                 background-color: ${myAtttrValue};
             }
+            button:disabled {
+                border-color: #141313;
+                background: #d3f3f075;
+                color: #dce8ea00;
+            }
           </style>
           <div class="bg-color">
             <p>Custom Attribute Value: ${myAtttrValue}</p>
+            <button ${disabled}> Click me </button>
           </div>
         `;
     }
