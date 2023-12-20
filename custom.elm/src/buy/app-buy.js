@@ -5,12 +5,10 @@ class AppBuy extends HTMLElement {
     }
     connectedCallback() {
         this.render();
-        this.firstChild.addEventListener('click', this.addToCart);
-        //this.firstChild.addEventListener('click', (pointerEvent) => this.addToCart(pointerEvent));
+        this.subscribe('click', 'addToCart');
     }
     disconnectedCallback() {
-        this.firstChild.removeEventListener('click', this.addToCart);
-        //this.firstChild.removeEventListener('click', (pointerEvent) => this.addToCart(pointerEvent));
+        this.unsubscribe('click', 'addToCart');
     }
 
     addToCart(pointerEvent) {
@@ -19,15 +17,26 @@ class AppBuy extends HTMLElement {
             let names = ['bubbles', 'apples', 'toys', 'pears', 'pineapples'];
             return { name: names[prdId], id: prdId }
         }
-
-        this.dispatchEvent(new CustomEvent('app:basket:changed', {
-            bubbles: true,
-            detail: getPrd()
-        }));
+        this.dispatchEvent(pointerEvent, 'app:basket:changed', getPrd());
     }
 
     static tag = 'app-buy';
     static register() {
         customElements.define(AppBuy.tag, AppBuy);
+    }
+    subscribe(eventName = 'click', handler = 'addToCart') {
+        const action = this[handler];
+        this.firstChild.addEventListener(eventName, (pointerEvent) => action.apply(this, [pointerEvent]));
+    }
+    unsubscribe(eventName = 'click', handler = 'addToCart') {
+        const action = this[handler];
+        this.firstChild.removeEventListener(eventName, (pointerEvent) => action.apply(this, [pointerEvent]));
+    }
+    dispatchEvent(pointerEvent, eventName = 'app:basket:changed', data = {}) {
+        const eventManager = pointerEvent?.target || this;
+        eventManager.dispatchEvent(new CustomEvent(eventName, {
+            bubbles: true,
+            detail: data
+        }));
     }
 }
