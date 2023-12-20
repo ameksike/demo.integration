@@ -9,10 +9,22 @@
 <body>
 
     <app-buy> </app-buy>
-    <app-basket></app-basket>
-    <app-basket></app-basket>
-    <app-card></app-card>
 
+    <app-basket></app-basket>
+    <app-basket></app-basket>
+
+    <app-card my-attr="blue" id="myElement"> </app-card>
+
+
+    <input type="text" value="red" id="mycolor" onkeydown="update(this)" />
+    <script>
+        function update(elm) {
+            let e = window.event;
+            if (e.key === 'Enter') {
+                myElement.setAttribute('my-attr', elm.value);
+            }
+        }
+    </script>
 </body>
 
 </html>

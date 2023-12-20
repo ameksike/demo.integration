@@ -1,10 +1,13 @@
 class AppCard extends HTMLElement {
 
-    static observedAttributes = ["color", "size"];
+    static get observedAttributes() {
+        return ['my-attr'];
+    }
 
     constructor() {
         // Always call super first in constructor
         super();
+        this.attachShadow({ mode: 'open' });
     }
 
     connectedCallback() {
@@ -20,15 +23,27 @@ class AppCard extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        console.log(`Attribute ${name} has changed.`);
+        console.log(`Attribute ${name} has changed: ${oldValue} ->  ${newValue}. `);
+        if (oldValue !== newValue) {
+            this.render();
+        }
     }
-
 
     render() {
-        
+        const myAtttrValue = this.getAttribute('my-attr') || 'red';
+        this.shadowRoot.innerHTML = `
+          <style>
+            .bg-color {
+                background-color: ${myAtttrValue};
+            }
+          </style>
+          <div class="bg-color">
+            <p>Custom Attribute Value: ${myAtttrValue}</p>
+          </div>
+        `;
     }
     refresh(data) {
-
+        this.render();
     }
 
     static tag = "app-card";
