@@ -32,7 +32,27 @@ To develop this microfrontend, try the following steps:
 3. In the browser console, run localStorage.setItem('devtools', true); Refresh the page.
 4. A yellowish rectangle should appear at the bottom right of your screen. Click on it. Find the name @demo/list and click on it. If it is not present, click on Add New Module.
 5. Paste the URL above into the input that appears. Refresh the page.
-6. Congrats, your local code is now being used!
+6. [Add SCSS support](https://webpack.js.org/loaders/sass-loader/#root).
+    - ``` npm install sass-loader sass webpack --save-dev ```
+    - single.spa\list\webpack.config.js
+    - ```
+        module: {
+          rules: [
+            {
+              test: /\.s[ac]ss$/i,
+              use: [
+                // Creates `style` nodes from JS strings
+                "style-loader",
+                // Translates CSS into CommonJS
+                "css-loader",
+                // Compiles Sass to CSS
+                "sass-loader",
+              ],
+            },
+          ],
+        }
+    ```
+7. Congrats, your local code is now being used!
 
 For further information about "integrated" mode, see the following links: 
 * [Local Development Overview](https://single-spa.js.org/docs/recommended-setup#local-development)
@@ -108,12 +128,14 @@ After this, you should no longer see this welcome page but should instead see yo
 - http://localhost:4200/main.js
 - Importing the Angular app into the root: 
 ```
-ERROR
+ERROR:
 application '@demo/form' died in status SKIP_BECAUSE_BROKEN: NG0908: In this configuration Angular requires Zone.js
 RuntimeError@http://localhost:4200/main.js:10758:5
 ```
+```
+SOLVE:
 <script src="https://cdn.jsdelivr.net/npm/zone.js@0.11.3/dist/zone.min.js"></script>
-
+```
 
 ## STEP 4: Create App 3 - State Management
 - npx create-single-spa --moduleType util-module
@@ -128,5 +150,34 @@ RuntimeError@http://localhost:4200/main.js:10758:5
 ```
 - npm run build 
 - http://localhost:4300/demo-store.js
-
-
+- Publish the service through: 
+    - ``` single.spa\root\src\microfrontend-layout.html``` >> ``` <route default> ```
+    - ``` single.spa\root\src\index.ejs ``` >> ``` <script type="systemjs-importmap">  ```
+- Import the store into Angular app 
+    - single.spa\form\extra-webpack.config.js
+    - ```js
+        module.exports = (config, options) => {
+        const singleSpaWebpackConfig = singleSpaAngularWebpack(config, options);
+        singleSpaWebpackConfig.externals = ["single-spa", /^@demo\/store$/];
+        return singleSpaWebpackConfig;
+      };
+      ```
+    - Import the types ``` single.spa\form\src\types\demo-store.d.ts ```
+    - Include the types into ``` single.spa\form\tsconfig.json ```
+    - ```json 
+      {
+          "compilerOptions": {
+            "typeRoots": ["./src/types", "./node_modules/@types"]
+          }
+      }
+      ```
+- Import the store into React app 
+    - Import the types ``` single.spa\list\src\types\demo-store.d.ts ```
+    - Include the types into ``` single.spa\list\tsconfig.json ```
+    - ```json 
+      {
+          "compilerOptions": {
+            "typeRoots": ["./src/types", "./node_modules/@types"]
+          }
+      }
+      ```
