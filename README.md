@@ -33,21 +33,19 @@ The "best" technology depends on factors like the complexity of your application
 
 Webpack Module Federation and frameworks like Single-SPA have gained popularity due to their flexibility and ability to work with various front-end frameworks. However, your choice should align with your specific use case and team capabilities.
 
-### Notes 
-- Libs	
-	- Webpack 5 Module Federation
-	- Single SPA 
-    	- Nx (angualr)
-	- Open components 
-	
-- States
-	- Custom events
-
-- Integration: 
-	- Server Side Composition (Claud front) building serverless microfrontend
-	- Edge Side Composition 
+## Note
+- Build Time Integration
+	- Packages 
+- Run Time Integration
+	- Server Side Composition 
+		- (Cloud front) building serverless microfrontend
+	- Edge Side Composition
   	- Client Side Composition
-		- iframes 
-		- web componets 
-		- bundles de JS
-		- orquestadores
+		- Iframes 
+		- Web componets 
+		- Bundles JavaScript
+		- Orchestrators
+			- Webpack v5: Module Federation
+			- Single SPA 
+    			- Nx (Angular)
+			- Open Components 
