@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { storeTodo, ITodo } from "@demo/store";
-//import './root.component.scss';
+import './root.component.scss';
 
 export default function Root(props) {
   const [todos, setTodos] = useState<ITodo[]>([]);
