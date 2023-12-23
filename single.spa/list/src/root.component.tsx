@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { storeTodo, ITodo } from "@demo/store";
 import './root.component.scss';
 
-export default function Root(props) {
+export default function Root(props): JSX.Element {
   const [todos, setTodos] = useState<ITodo[]>([]);
   useEffect(() => {
     const subscriptions = storeTodo.storeTodo$.subscribe(setTodos);
