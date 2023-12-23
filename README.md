@@ -47,5 +47,5 @@ Webpack Module Federation and frameworks like Single-SPA have gained popularity 
 		- Orchestrators
 			- Webpack v5: Module Federation
 			- Single SPA 
-    			- Nx (Angular)
+    		- Nx (Angular)
 			- Open Components 
