@@ -46,6 +46,9 @@ Webpack Module Federation and frameworks like Single-SPA have gained popularity 
 		- Bundles JavaScript
 		- Orchestrators
 			- Webpack v5: Module Federation
+				- Delegate modules (NextMedusaPlugin, importDelegateModule)
+				- Federations of Federations 
+				- Promises 
 			- Single SPA 
     		- Nx (Angular)
 			- Open Components 
