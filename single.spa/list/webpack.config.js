@@ -17,9 +17,17 @@ module.exports = (webpackConfigEnv, argv) => {
           test: /\.s[ac]ss$/i,
           use: [
             // Creates `style` nodes from JS strings
-            "style-loader",
+            // "style-loader",
+            require.resolve("style-loader", {
+              paths: [require.resolve("webpack-config-single-spa")],
+            }),
             // Translates CSS into CommonJS
-            "css-loader",
+            // "css-loader",
+            require.resolve("css-loader", {
+              paths: [require.resolve("webpack-config-single-spa")],
+            }),
+            // Compiles Postcss to CSS
+            "postcss-loader",
             // Compiles Sass to CSS
             "sass-loader",
           ],

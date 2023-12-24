@@ -1,8 +1,38 @@
 .container {
-    border-color: rgb(12, 131, 59);
-    border-radius: 5px;
-    border-width: 2px;
-    padding: 50px;
+  border-color: rgb(12, 131, 59);
+  border-radius: 5px;
+  border-width: 2px;
+  padding: 50px;
 
-    border-style: dashed;
+  border-style: dashed;
+}
+
+:root {
+  --color-primary: #011627;
+  --color-secondary: #8b8c8a;
+  --color-danger: #e71d36;
+  --color-warning: #ff9f1c;
+  --color-info: #2ec4b6;
+  --color-background: #182b3a;
+  --color-white: #fdfffc;
+  --color-black: #171817;
+  --color-overlay: rgba(253, 255, 252, 0.8);
+}
+
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-white);
+}
+
+nav.topnav {
+  position: fixed;
+  width: 100vw;
+  top: 0px;
+  z-index: 100;
 }

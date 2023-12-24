@@ -53,6 +53,32 @@ To develop this microfrontend, try the following steps:
         }
     ```
 7. Congrats, your local code is now being used!
+8. Add support for [Tailwindcss](https://tailwindcss.com/) based on this [styleguide](https://github.com/react-microfrontends/styleguide/tree/master)
+  - npm install tailwindcss
+  - npm install -D postcss autoprefixer sass-loader
+  - create files: ``` single.spa\list\postcss.config.js ``` and ``` single.spa\list\tailwind.config.js ```
+  - update the ``` single.spa\list\webpack.config.js ```
+      ```js
+        return merge(defaultConfig, {
+            module: {
+              rules: [
+                {
+                  test: /\.s[ac]ss$/i,
+                  use: [
+                    require.resolve("style-loader", {
+                      paths: [require.resolve("webpack-config-single-spa")],
+                    }),
+                    require.resolve("css-loader", {
+                      paths: [require.resolve("webpack-config-single-spa")],
+                    }),
+                    "postcss-loader",
+                    "sass-loader",
+                  ],
+                },
+              ],
+            },
+          });
+      ```
 
 For further information about "integrated" mode, see the following links: 
 * [Local Development Overview](https://single-spa.js.org/docs/recommended-setup#local-development)
