@@ -1,12 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import singleSpaReact from "single-spa-react";
-import Root from "./root.component";
+import List from "./components/list";
+
+//const Root = React.lazy(()=> import("./components/root.component"))
 
 const lifecycles = singleSpaReact({
   React,
   ReactDOM,
-  rootComponent: Root,
+  rootComponent: List,
   errorBoundary(err, info, props) {
     // Customize the root error boundary for your microfrontend here.
     return null;
