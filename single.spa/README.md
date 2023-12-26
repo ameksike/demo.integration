@@ -55,7 +55,7 @@ To develop this microfrontend, try the following steps:
 7. Congrats, your local code is now being used!
 8. Add support for [Tailwindcss](https://tailwindcss.com/) based on this [styleguide](https://github.com/react-microfrontends/styleguide/tree/master)
   - npm install tailwindcss
-  - npm install -D postcss autoprefixer sass-loader
+  - npm install -D postcss postcss-loader autoprefixer sass sass-loader
   - create files: ``` single.spa\list\postcss.config.js ``` and ``` single.spa\list\tailwind.config.js ```
   - update the ``` single.spa\list\webpack.config.js ```
       ```js
