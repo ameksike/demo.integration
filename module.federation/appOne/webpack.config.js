@@ -4,6 +4,13 @@ const path = require("path");
 
 const deps = require("./package.json").dependencies;
 module.exports = (_, argv) => ({
+  mode: 'production',
+  performance: {
+      hints: false,
+      maxEntrypointSize: 512000,
+      maxAssetSize: 512000
+  },
+
   output: {
     publicPath: "http://localhost:4001/",
   },
