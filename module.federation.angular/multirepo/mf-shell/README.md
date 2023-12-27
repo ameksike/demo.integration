@@ -25,3 +25,20 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Router 
+- module.federation.angular\multirepo\mf-shell\src\app\app.routing.module.ts
+```js
+import { loadRemoteModule } from '@angular-architects/module-federation';
+const routes: Routes = [
+    {
+        path: 'shop',
+        loadChildren: () =>
+        loadRemoteModule({
+            type: 'module',
+            remoteEntry: 'http://localhost:4202/remoteEntry.js',
+            exposedModule: './ShopModule',
+        }).then(m => m.ShopModule),
+    }
+]
+```

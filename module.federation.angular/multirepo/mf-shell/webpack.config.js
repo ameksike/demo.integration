@@ -39,6 +39,7 @@ module.exports = {
       // For hosts (please adjust)
       remotes: {
         "mfShopping": "http://localhost:4202/remoteEntry.js",
+        "mfPayment": "http://localhost:4203/remoteEntry.js"
       },
       shared: {
         ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
