@@ -1,17 +1,12 @@
 {
-  "name": "monorepo",
+  "name": "mf-payment",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "run:all": "node node_modules/@angular-architects/module-federation/src/server/mf-dev-server.js",
-    "mf-shell": "ng s mf-shell",
-    "mf-shopping": "ng s mf-shopping",
-    "mf-payment": "ng s mf-payment",
-    "all": "npm-run-all --parallel mf-shell mf-shopping mf-payment"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
@@ -28,8 +23,8 @@
     "zone.js": "~0.12.0"
   },
   "devDependencies": {
-    "@angular-architects/module-federation": "^15.0.3",
-    "@angular-devkit/build-angular": "^15.1.6",
+    "@angular-architects/module-federation": "^17.0.1",
+    "@angular-devkit/build-angular": "^15.1.1",
     "@angular/cli": "~15.1.1",
     "@angular/compiler-cli": "^15.1.0",
     "@types/jasmine": "~4.3.0",
@@ -39,9 +34,6 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "ng-packagr": "^15.1.0",
-    "ngx-build-plus": "^15.0.0",
-    "npm-run-all": "^4.1.5",
     "typescript": "~4.9.4"
   }
 }
