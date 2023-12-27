@@ -2,17 +2,16 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const mf = require("@angular-architects/module-federation/webpack");
 const path = require("path");
 const share = mf.share;
+const shareAll = mf.shareAll;
 
 const sharedMappings = new mf.SharedMappings();
-sharedMappings.register(
-  path.join(__dirname, 'tsconfig.json'),
-  [/* mapped paths to share */]);
+sharedMappings.register( path.join(__dirname, 'tsconfig.json'), [/* mapped paths to share */]);
 
 module.exports = {
   output: {
     uniqueName: "mfShopping",
     publicPath: "auto",
-    scriptType: 'text/javascript'
+    //scriptType: 'text/javascript'
   },
   optimization: {
     runtimeChunk: false
@@ -33,22 +32,23 @@ module.exports = {
       name: "mfShopping",
       filename: "remoteEntry.js",
       exposes: {
-        './ShopModule': './/src/app/shop/shop.module.ts',
+        './ShopModule': './src/app/shop/shop.module.ts',
       },
 
       // For hosts (please adjust)
       // remotes: {
       //     "mfe1": "http://localhost:3000/remoteEntry.js",
       // },
-
-      shared: share({
+      shared: {
+        ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+      },
+      /*shared: share({
         "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
         "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
         "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
         "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-
         ...sharedMappings.getDescriptors()
-      })
+      })*/
 
     }),
     sharedMappings.getPlugin()
