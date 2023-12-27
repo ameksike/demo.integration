@@ -32,7 +32,7 @@ module.exports = {
       name: "mfShopping",
       filename: "remoteEntry.js",
       exposes: {
-        './Component': './/src/app/app.component.ts',
+        './ShopModule': './/src/app/shop/shop.module.ts',
       },
 
       // For hosts (please adjust)
