@@ -6,15 +6,15 @@
 <script src="./src/card/app-card.js"></script>
 <script src="./src/main.js"></script>
 
+
 <body>
 
     <app-buy> </app-buy>
-
     <app-basket></app-basket>
     <app-basket></app-basket>
-
     <app-card my-attr="blue" id="myElement" disabled=true> </app-card>
 
+    <br />
 
     <input type="text" value="red" id="mycolor" onkeydown="update(this)" />
     <script>
@@ -25,6 +25,12 @@
             }
         }
     </script>
+
+    <br />
+
+    <script src="https://unpkg.com/@morbidick/bootstrap@latest/dist/elements.bundled.min.js"></script>
+    <bs-button href="#link">Click Me</bs-button>
+    <bs-badge class="warning">warning</bs-badge>
 </body>
 
 </html>
