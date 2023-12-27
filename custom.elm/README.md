@@ -3,6 +3,7 @@
  - [Using Custom Elements](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements).
  - [Triggering Events](https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events)
  - [Global attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes)
+ - [Webcomponents](https://www.webcomponents.org/introduction#custom-elements)
 
 ## Desc
 - The observedAttributes array defines which attributes the element should observe for changes.
